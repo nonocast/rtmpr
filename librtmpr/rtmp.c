@@ -4169,7 +4169,7 @@ int RTMP_Write(RTMP *r, const char *buf, int size) {
       pkt->m_nTimeStamp = AMF_DecodeInt24(buf);
       buf += 3;
       pkt->m_nTimeStamp |= *buf++ << 24;
-      RTMP_Log(RTMP_LOGINFO, "... pkt->m_nTimeStamp: %d", pkt->m_nTimeStamp);
+      RTMP_Log(RTMP_LOGDEBUG2, "... pkt->m_nTimeStamp: %d", pkt->m_nTimeStamp);
       buf += 3;
       s2 -= 11;
 

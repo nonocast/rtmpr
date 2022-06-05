@@ -52,8 +52,9 @@ annexb_stream_t stream;
 
 int main() {
   RTMP_LogSetLevel(RTMP_LOGDEBUG);
-  // url = "rtmp://shgbit.xyz/live/5";
-  url = "rtmp://live.nonocast.cn/foo/1";
+  url = "rtmp://shgbit.xyz/live/5";
+  // url = "rtmp://live.nonocast.cn/foo/1";
+  printf("url: %s\n", url);
   signal(SIGINT, sigint);
 
   memset(&stream, 0x00, sizeof(annexb_stream_t));
@@ -245,7 +246,7 @@ static void send_flv_data_tag(RTMP *rtmp, annexb_stream_t *stream) {
 
 static void annexb_parse(annexb_stream_t *stream) {
   // 简化: 将文件一次load进缓冲区
-  stream->fp = fopen("clip.h264", "rb");
+  stream->fp = fopen("sample.h264", "rb");
   fseek(stream->fp, 0, SEEK_END);
   size_t filesize = ftell(stream->fp);
   printf("file size: %lu bytes\n", filesize);

@@ -1,7 +1,7 @@
 #include <gtest/gtest.h>
 extern "C" {
 #include "log.h"
-#include "rtmpwrapper.h"
+#include "rtmpx.h"
 #include <stdio.h>
 #include <string.h>
 }
