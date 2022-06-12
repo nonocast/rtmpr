@@ -12,20 +12,22 @@ DEF=-DRTMPDUMP_VERSION=\"$(VERSION)\" $(CRYPTO_DEF) $(XDEF)
 OPT=-O2
 CPPFLAGS=$(ARCH) -g -std=c++11
 CFLAGS=$(ARCH) -g -Wall -Wno-unused -arch arm64 -arch x86_64 $(DEF) $(OPT)
-OBJECTS=rtmp.o log.o amf.o hashswf.o parseurl.o rtmpx.o flv.o
-TEST_OBJECTS=rtmpx_test.o flv_test.o
+OBJECTS=rtmp.o log.o amf.o hashswf.o parseurl.o rtmpx.o flv.o flvhttpd.o
+TEST_OBJECTS=rtmpx_test.o flv_test.o flvhttpd_test.o
 
-all: librtmpr.a test app-flv app-annexb
+all: librtmpr.a test app-flv app-annexb app-flvhttpd
 
-run: app-annexb
+run: app-flvhttpd
 	@./$<
 
-debug: app-annexb
+debug: app-flvhttpd
 	@arch -x86_64 lldb $<
 
 run.test: test
 	@./test
 
+app-flvhttpd: $(OBJECTS) app-flvhttpd.o
+	clang $(ARCH) -g -o $@ $^
 
 app-annexb: $(OBJECTS) app-annexb.o
 	clang $(ARCH) -g -o $@ $^

@@ -5,12 +5,12 @@ import VideoToolbox
 class VTH264Encoder: Encoder {
   var width: Int
   var height: Int
-  var fps = 10
+  var fps = 30
   var interval: CMTime { return CMTime(value: 1, timescale: CMTimeScale(fps)) }
   var bitrate: Int { return width * height * 3 * 4 * 8 }
   var dataRateLimits: [Int] { return [width * height * 3 * 4] }
   var profile = kVTProfileLevel_H264_Main_AutoLevel
-  var maxKeyFrameInterval = 10
+  var maxKeyFrameInterval = 30
   var bframes = false
   var output: Output?
 
